@@ -1,2 +1,2 @@
 # SPOJ
-Sphere online judge solutions
+Just practicing in problems solving
