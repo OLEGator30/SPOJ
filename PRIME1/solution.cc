@@ -9,29 +9,33 @@ int main(void) {
     uint nTests;
     scanf("%d\n", &nTests);
     for (uint test = 0; test < nTests; ++test) {
-        uint lowerBound, upperBound;
-        scanf("%d %d\n", &lowerBound, &upperBound);
+        size_t lowerBound, upperBound;
+        scanf("%zu %zu\n", &lowerBound, &upperBound);
 
-        bool *sieve = (bool*)calloc(upperBound - lowerBound + 1, sizeof(bool));
+        uint *sieve = (uint*)calloc(upperBound - lowerBound + 1, sizeof(uint));
         if (lowerBound == 1) {
             sieve[0] = true;
         }
 
-        for (uint i = 2; i < (int)sqrt(upperBound) + 1; ++i) {
-            uint j = i * i < lowerBound / i * i
+        for (size_t i = 2; i < (size_t)sqrt(upperBound) + 1; ++i) {
+            size_t j = i * i < lowerBound / i * i
                 ? lowerBound / i * i
                 : i * i;
             for (; j <= upperBound; j += i) {
-                sieve[j - lowerBound] = true;
+                if (j >= lowerBound) {
+                    sieve[j - lowerBound] = true;
+                }
             }
         }
 
-        for (uint i = 0; i <= upperBound - lowerBound; ++i) {
+        for (size_t i = 0; i <= upperBound - lowerBound; ++i) {
             if (!sieve[i]) {
-                printf("%d\n", i + lowerBound);
+                printf("%zu\n", i + lowerBound);
             }
         }
         printf("\n");
+
+        free(sieve);
     }
 
     return 0;
