@@ -9,7 +9,7 @@ int main(int /*argc*/, char ** /*argv*/) {
     unsigned int nTests;
     cin >> nTests;
 
-    for (char test = 0; test < nTests; ++test) {
+    for (unsigned int test = 0; test < nTests; ++test) {
         unsigned int nAttempts;
         cin >> nAttempts;
 
